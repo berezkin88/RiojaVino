@@ -1,0 +1,11 @@
+// editor files
+.idea/*
+.settings/*
+
+// project files
+target/*
+
+// other files
+.classpath
+.project
+riojavino.iml
