@@ -32,18 +32,35 @@ public class WineRepository {
 		}
 	}
 	
-	public List<Wine> addToStore() throws Exception{
+	public List<Wine> initStore() throws Exception{
 		List<String[]> list = read();
 		
-		// adding wines to store list
+		return store = convertToWines(list);
+	}
+	
+	public void update() throws Exception{
+		store = convertToWines(read());
+	}
+	
+	public LinkedList<Wine> convertToWines(List<String[]> list) {
+		LinkedList<Wine> wines = new LinkedList<>();
+		
+		if (list.isEmpty()) 
+			return wines;
+		
+		// adding wines to list
 		for (int i = 1; i < list.size(); i++) {
-			store.add(new Wine(list.get(i)[0], Integer.parseInt(list.get(i)[1]), Double.parseDouble(list.get(i)[2])));
+			wines.add(new Wine(list.get(i)[0], Integer.parseInt(list.get(i)[1]), Double.parseDouble(list.get(i)[2])));
 		}
-		return store;
+		return wines;
 	}
 	
 	public boolean check(Wine wine) {
-		// TODO if wine is in a list return true
+
+		if (store.stream().anyMatch(e -> wine.equals(e))) {
+			return true;
+		}
+
 		return false;
 	}
 
