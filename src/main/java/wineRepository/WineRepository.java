@@ -15,10 +15,11 @@ import com.riojavino.entity.Wine;
  */
 
 public class WineRepository {
-	private static List<Wine> store = new LinkedList<>();
+	private static List<Wine> store;
 
 	private CSVReader reader;
 	
+	//read from csv
 	public List<String[]> read() throws Exception {
 		
 		try {
@@ -28,6 +29,7 @@ public class WineRepository {
 			
 			return list;
 		} catch (Exception e) {
+			System.out.println("Error in wine repository!");
 			throw new Exception("Error! There is no such file");
 		}
 	}
@@ -38,7 +40,8 @@ public class WineRepository {
 		return store = convertToWines(list);
 	}
 	
-	public void update() throws Exception{
+	//update store
+	public void update() throws Exception{			
 		store = convertToWines(read());
 	}
 	
@@ -55,16 +58,30 @@ public class WineRepository {
 		return wines;
 	}
 	
-	public boolean check(Wine wine) {
+	public static boolean checkSKU(int sku) {
 
-		if (store.stream().anyMatch(e -> wine.equals(e))) {
+		if (store.stream().anyMatch(e -> e.getSku() == sku)) {
 			return true;
 		}
 
 		return false;
 	}
+	
+	public static Wine findBySKU(int sku) throws Exception{
+
+		for (Wine item : store) {
+			if(item.getSku() == sku)
+				return item;
+		}
+		
+		throw new Exception();
+	}
 
 	public static List<Wine> getStore() {
 		return store;
+	}
+
+	public static void setStore(List<Wine> store) {
+		WineRepository.store = store;
 	}
 }

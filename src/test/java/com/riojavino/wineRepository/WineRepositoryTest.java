@@ -11,6 +11,8 @@ import com.riojavino.entity.Wine;
 import wineRepository.WineRepository;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * 
@@ -28,7 +30,7 @@ public class WineRepositoryTest {
 		testStore.add(wine);
 		
 		assertEquals(1, testStore.size());
-		assertEquals(true, testStore.stream().anyMatch(e -> wine.equals(e)));
+		assertTrue(testStore.stream().anyMatch(e -> wine.equals(e)));
 	}
 	
 	@Test
@@ -56,5 +58,31 @@ public class WineRepositoryTest {
 		verify(wines).addAll(wr.convertToWines(testStore));
 		
 		assertEquals(true, !wines.isEmpty());
+	}
+	
+	@Test
+	public void shouldFindWineBySKU() {
+		Wine wine = new Wine("Lan", 1111, 9.99);
+		List<Wine> testStore = new LinkedList<>();
+		WineRepository wr = new WineRepository();
+		
+		testStore.add(wine);
+		wr.setStore(testStore);
+				
+		assertEquals(1, wr.getStore().size());
+		assertTrue(wr.checkSKU(wine.getSku()));
+	}
+	
+	@Test
+	public void shouldThrowException() {
+		Wine wine = new Wine("Lan", 1111, 9.99);
+		List<Wine> testStore = new LinkedList<>();
+		WineRepository wr = new WineRepository();
+		
+		testStore.add(wine);
+		wr.setStore(testStore);
+		
+		assertEquals(1, wr.getStore().size());
+		assertFalse(wr.checkSKU(2));
 	}
 }

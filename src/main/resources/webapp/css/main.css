@@ -1,0 +1,189 @@
+/* common */
+* {
+    margin: 0;
+}
+
+body {
+    background-color: aliceblue;
+}
+
+a {
+    text-decoration: none;
+    transition: color 1s;
+    text-shadow: 1px 0 black, 0 1px black, -1px 0 black, 0 -1px black;
+}
+
+form {
+	width: inherit;
+}
+
+.shop-link {
+    text-align: center;
+}
+
+/* home page */
+a:visited {
+    color: aliceblue;
+}
+
+a:hover {
+    transition: color 1s;
+    color: darkolivegreen;
+    text-shadow: 1px 0 white, 0 1px white, -1px 0 white, 0 -1px white;
+}
+
+#banner {
+    top: 13vh; 
+    left: 22vw;
+    position: absolute;
+    display: none;
+}
+
+#title {
+    font-size: 102px;
+    color: seashell;
+    text-shadow: 1px 0 goldenrod, 0 1px goldenrod, -1px 0 goldenrod, 0 -1px goldenrod;
+}
+
+#home-text {
+    font-size: 33px;
+    text-shadow: 1px 0 white, 0 1px white, -1px 0 white, 0 -1px white;
+}
+
+.store-link {
+    color: aliceblue;   
+    font-size: 26px;
+    float: right;
+    padding-top: 0.75em;
+}
+/* end of home page */
+
+/* success page */
+#success-message {
+    position: absolute;
+    left: 58vw;
+    top: 4vh;
+    display: none;
+}
+
+#congrats {
+    font-size: 66px;
+    color: seashell;
+}
+
+#s-link {
+    font-size: 40px;
+    color: burlywood;
+}
+
+#s-link:hover {
+    font-size: 40px;
+    color: darkolivegreen;
+}
+/* end of success page */
+
+/* failure page */
+#failure-message {
+    position: absolute;
+    left: 9vw;
+    top: 9vh;
+    display: none;
+}
+
+#failure {
+    color: ghostwhite;
+    font-size: 66px;
+}
+/* end of failure page */
+
+/* shop and basket pages */
+#shop_banner {
+    text-align: center;
+    top: 4vh;
+    position: relative;
+    font-size: 1.7em;
+    display: flow-root;
+}
+
+#cellar {
+    text-shadow: 1px 0 white, 0 1px white, -1px 0 white, 0 -1px white;
+}
+
+#basket:disabled {
+    opacity: 0.7;
+}
+
+#basket {
+    float: right;
+    margin-right: 2em;
+    width: 6em;
+    height: 1.9em;
+    border-radius: 2em;
+    background-color: burlywood;
+    color: black;
+    font-size: 1em;
+}
+
+.wines {
+    max-width: 1100px;
+	position: relative;
+	margin: auto;
+    top: 7vh;
+	overflow-y: scroll;
+	height: 570px;
+}
+
+#wines {
+    max-width: 1100px;
+	position: relative;
+	margin: auto;
+    top: 7vh;
+	overflow-y: scroll;
+	height: 570px;
+}
+
+.wine_icon {
+	width: 100px;
+	height: 150px;
+}
+
+.wine_slot {
+	display: flex;
+	width: 100%;
+	margin-bottom: 1em;
+    background-color: seashell;
+    align-items: center;
+    opacity: 0.7;
+}
+
+.description {
+	display: inline-flex;
+	margin: 0 auto;
+}
+
+.mark {
+	padding-left: 42px;
+}
+
+.title {
+	font-size: 4.250em;
+}
+
+.sku {
+	line-height: 2.563em;
+}
+
+.price {
+	font-size: 4em;
+	color: red;
+	padding-right: 9vw;
+}
+/* end of shop and basket pages */
+
+/* background image */
+#background {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+}
