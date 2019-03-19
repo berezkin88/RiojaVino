@@ -1,10 +1,7 @@
 package com.riojavino.controller;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -16,8 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.riojavino.entity.Wine;
 import com.riojavino.service.WineService;
-
-import wineRepository.WineRepository;
+import com.riojavino.wineRepository.WineRepository;
 
 /**
  * Servlet implementation class BasketServlet
@@ -41,7 +37,7 @@ public class BasketServlet extends HttpServlet {
 		
 		request.setAttribute("selected", results);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/./basket.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/pages/basket.jsp");
 		dispatcher.forward(request, response);
 	}
 	

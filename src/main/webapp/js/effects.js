@@ -9,5 +9,5 @@ $(document).ready(function () {
     $("#failure-message").fadeIn(2500);
 
     /* shop page */
-    let upload = $(".wines").load("/riojavino/shop/items #wines");
+    $(".wines").load("/riojavino/shop/items #wines");
 });

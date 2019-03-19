@@ -4,8 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.riojavino.entity.Wine;
-
-import wineRepository.WineRepository;
+import com.riojavino.wineRepository.WineRepository;
 
 /**
  * 
@@ -16,7 +15,7 @@ import wineRepository.WineRepository;
 
 public class WineService {
 	
-	private List<Wine> basket;	
+	private static List<Wine> basket;	
 	
 	public WineService() {
 		basket = new LinkedList<>();
@@ -31,7 +30,7 @@ public class WineService {
 		}
 	}
 
-	public List<Wine> getBasket() {
+	public static List<Wine> getBasket() {
 		return basket;
 	}
 

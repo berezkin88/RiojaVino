@@ -1,13 +1,13 @@
 package wineService;
 
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import org.junit.Test;
-import static org.mockito.Mockito.*;
 
 import com.riojavino.service.WineService;
-
-import wineRepository.WineRepository;
+import com.riojavino.wineRepository.WineRepository;
 
 public class WineServiceTest {
 	

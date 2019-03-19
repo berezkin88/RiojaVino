@@ -18,10 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ShopServlet", urlPatterns = "/shop")
 public class ShopServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("shop.html");
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/pages/shop.html");
 		dispatcher.forward(request, response);
 	}
 }

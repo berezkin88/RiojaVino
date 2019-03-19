@@ -22,7 +22,7 @@
 	</div>
 
 	<div id="wines">
-		<form>
+		<form method="post" action="/./riojavino/buyService" id="post_form">
 			<c:forEach items="${selected}" var="wine">
 				<div class="wine_slot" style=<c:if test="${wine.value == false}"><c:out value="background-color:darkred;"/> </c:if>>
 					<div class="description" >

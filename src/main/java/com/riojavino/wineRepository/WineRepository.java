@@ -1,8 +1,9 @@
-package wineRepository;
+package com.riojavino.wineRepository;
 
+import java.io.File;
 import java.io.FileReader;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.List; 
 
 import com.opencsv.CSVReader;
 import com.riojavino.entity.Wine;
@@ -15,18 +16,24 @@ import com.riojavino.entity.Wine;
  */
 
 public class WineRepository {
+	
 	private static List<Wine> store;
-
 	private CSVReader reader;
 	
+	public WineRepository() {
+	}
+
 	//read from csv
 	public List<String[]> read() throws Exception {
+		File file = 
+				new File("C:\\Users\\Alexander\\eclipse-workspace\\riojavino\\src\\main\\webapp\\WEB-INF\\data\\store.csv");
+		System.out.println("Start reading");
 		
 		try {
-			reader = new CSVReader(new FileReader(
-					"C:\\Users\\Alexander\\eclipse-workspace\\riojavino\\src\\main\\resources\\data\\store.csv"));
+			reader = new CSVReader(new FileReader(file));
 			LinkedList<String[]> list = (LinkedList<String[]>) reader.readAll();
 			
+			System.out.println("Reading complete");
 			return list;
 		} catch (Exception e) {
 			System.out.println("Error in wine repository!");

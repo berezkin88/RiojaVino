@@ -1,18 +1,19 @@
 package com.riojavino.wineRepository;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.mockito.Mockito.*;
-import org.junit.Test;
-
-import com.riojavino.entity.Wine;
-
-import wineRepository.WineRepository;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+
+import java.io.File;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.junit.Test;
+
+import com.riojavino.controller.HomeServlet;
+import com.riojavino.entity.Wine;
 
 /**
  * 
@@ -21,6 +22,7 @@ import static org.junit.Assert.assertTrue;
  */
 
 public class WineRepositoryTest {
+	private File file = new File("C:\\Users\\Alexander\\eclipse-workspace\\riojavino\\src\\main\\webapp\\WEB-INF\\data\\store.csv");
 	
 	@Test
 	public void shouldReturnTrue() {
