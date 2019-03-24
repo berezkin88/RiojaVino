@@ -18,9 +18,8 @@ import com.riojavino.wineRepository.WineRepository;
  * @author Aleksandr Beryozkin
  */
 
-@WebServlet(name = "HomeServlet", urlPatterns = "")
+@WebServlet(name = "HomeServlet", urlPatterns = "/riojavino")
 public class HomeServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 	private WineRepository wr;
 
 
@@ -28,7 +27,7 @@ public class HomeServlet extends HttpServlet {
 			throws ServletException, IOException {
 		initAndUpdate();
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("home.html");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/pages/home.html");
 		dispatcher.forward(request, response);
 	}
 	

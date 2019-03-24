@@ -18,7 +18,7 @@ import com.riojavino.wineRepository.WineRepository;
  * @author Aleksandr Beryozkin
  */
 
-@WebServlet(name = "ItemsServlet", urlPatterns = "/shop/items")
+@WebServlet(name = "ItemsServlet", urlPatterns = "/riojavino/shop/items")
 public class ItemsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected List<Wine> items = WineRepository.getStore();

@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Aleksandr Beryozkin
  */
 
-@WebServlet(name = "ShopServlet", urlPatterns = "/shop")
+@WebServlet(name = "ShopServlet", urlPatterns = "/riojavino/shop")
 public class ShopServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+//	private static final long serialVersionUID = 1L;
 	
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -4,14 +4,4 @@
 
 <web-app>
 	<display-name>Riojavino App</display-name>
-	<servlet>
-		<servlet-name>HomeServlet</servlet-name>
-		<display-name>HomeServlet</display-name>
-		<description></description>
-		<servlet-class>com.riojavino.controller.HomeServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>HomeServlet</servlet-name>
-		<url-pattern>/HomeServlet</url-pattern>
-	</servlet-mapping>
 </web-app>

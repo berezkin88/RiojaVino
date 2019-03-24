@@ -25,12 +25,12 @@ public class WineRepository {
 
 	//read from csv
 	public List<String[]> read() throws Exception {
-		File file = 
-				new File("C:\\Users\\Alexander\\eclipse-workspace\\riojavino\\src\\main\\webapp\\WEB-INF\\data\\store.csv");
+//		File file =
+//				new File("C:\\Users\\Alexander\\eclipse-workspace\\riojavino\\src\\main\\webapp\\WEB-INF\\data\\store.csv");
 		System.out.println("Start reading");
 		
 		try {
-			reader = new CSVReader(new FileReader(file));
+			reader = new CSVReader(new FileReader("C:\\Users\\Alexander\\eclipse-workspace\\riojavino\\src\\main\\webapp\\WEB-INF\\data\\store.csv"));
 			LinkedList<String[]> list = (LinkedList<String[]>) reader.readAll();
 			
 			System.out.println("Reading complete");

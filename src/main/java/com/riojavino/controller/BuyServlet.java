@@ -30,12 +30,10 @@ import java.nio.file.Paths;
  * @author Aleksandr Beryozkin
  */
 
-@WebServlet(name = "BuyServlet", urlPatterns = "/buyService", asyncSupported = true)
+@WebServlet(name = "BuyServlet", urlPatterns = "/riojavino/buyService", asyncSupported = true)
 public class BuyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	WineRepository wr = new WineRepository();
-	String path = getServletContext().getRealPath("/WEB-INF/data/store.csv");
-	File file = new File(path);
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
@@ -82,10 +80,10 @@ public class BuyServlet extends HttpServlet {
 	}
 	
 	public void validateWines() throws Exception {
-		wr.update(file);
+		wr.update();
 		
 		for (Wine wine: WineService.getBasket()) {
-			if(WineRepository.checkSKU(wine.getSku()) == false) {
+			if(!WineRepository.checkSKU(wine.getSku())) {
 				WineService.getBasket().remove(wine);
 			}
 		}
