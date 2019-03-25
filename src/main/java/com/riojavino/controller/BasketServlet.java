@@ -21,7 +21,7 @@ import com.riojavino.wineRepository.WineRepository;
  * @author Aleksandr Beryozkin
  */
 
-@WebServlet(name = "BasketServlet", urlPatterns = "/riojavino/shop/basket")
+@WebServlet(name = "BasketServlet", urlPatterns = "/shop/basket")
 public class BasketServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private WineService selected;

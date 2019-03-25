@@ -18,7 +18,7 @@ import com.riojavino.wineRepository.WineRepository;
  * @author Aleksandr Beryozkin
  */
 
-@WebServlet(name = "HomeServlet", urlPatterns = "/riojavino")
+@WebServlet(name = "HomeServlet", urlPatterns = "")
 public class HomeServlet extends HttpServlet {
 	private WineRepository wr;
 

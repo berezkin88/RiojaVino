@@ -30,7 +30,7 @@ import java.nio.file.Paths;
  * @author Aleksandr Beryozkin
  */
 
-@WebServlet(name = "BuyServlet", urlPatterns = "/riojavino/buyService", asyncSupported = true)
+@WebServlet(name = "BuyServlet", urlPatterns = "/buyService", asyncSupported = true)
 public class BuyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	WineRepository wr = new WineRepository();

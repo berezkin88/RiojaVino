@@ -129,7 +129,6 @@ a:hover {
 	position: relative;
 	margin: auto;
     top: 7vh;
-	overflow-y: scroll;
 	height: 570px;
 }
 
