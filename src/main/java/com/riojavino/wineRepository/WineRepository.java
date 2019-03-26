@@ -19,8 +19,10 @@ public class WineRepository {
 	
 	private static List<Wine> store;
 	private CSVReader reader;
+	private String file;
 	
-	public WineRepository() {
+	public WineRepository(String file) {
+		this.file = file;
 	}
 
 	//read from csv
@@ -30,14 +32,15 @@ public class WineRepository {
 		System.out.println("Start reading");
 		
 		try {
-			reader = new CSVReader(new FileReader("C:\\Users\\Alexander\\eclipse-workspace\\riojavino\\src\\main\\webapp\\WEB-INF\\data\\store.csv"));
+			reader = new CSVReader(new FileReader(file));
 			LinkedList<String[]> list = (LinkedList<String[]>) reader.readAll();
 			
 			System.out.println("Reading complete");
 			return list;
 		} catch (Exception e) {
 			System.out.println("Error in wine repository!");
-			throw new Exception("Error! There is no such file");
+			e.printStackTrace();
+			return null;
 		}
 	}
 	

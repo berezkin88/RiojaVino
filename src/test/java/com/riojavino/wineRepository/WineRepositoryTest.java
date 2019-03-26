@@ -66,7 +66,7 @@ public class WineRepositoryTest {
 	public void shouldFindWineBySKU() {
 		Wine wine = new Wine("Lan", 1111, 9.99);
 		List<Wine> testStore = new LinkedList<>();
-		WineRepository wr = new WineRepository();
+		WineRepository wr = new WineRepository("file");
 		
 		testStore.add(wine);
 		wr.setStore(testStore);
@@ -79,7 +79,7 @@ public class WineRepositoryTest {
 	public void shouldThrowException() {
 		Wine wine = new Wine("Lan", 1111, 9.99);
 		List<Wine> testStore = new LinkedList<>();
-		WineRepository wr = new WineRepository();
+		WineRepository wr = new WineRepository("list");
 		
 		testStore.add(wine);
 		wr.setStore(testStore);

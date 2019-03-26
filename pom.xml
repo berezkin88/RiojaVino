@@ -71,6 +71,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<webXml>src\main\webapp\WEB-INF\web.xml</webXml>
+					<warSourceExcludes>data/**</warSourceExcludes>
 				</configuration>
 			</plugin>
 		</plugins>

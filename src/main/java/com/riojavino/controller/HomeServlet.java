@@ -1,6 +1,7 @@
 package com.riojavino.controller;
 
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -25,6 +26,7 @@ public class HomeServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		wr = new WineRepository(System.getProperty("catalina.home") + "\\data\\store.csv");
 		initAndUpdate();
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/pages/home.html");
@@ -32,7 +34,7 @@ public class HomeServlet extends HttpServlet {
 	}
 	
 	public void initAndUpdate() {
-		wr = new WineRepository();
+
 		try {
 			wr.initStore();
 			

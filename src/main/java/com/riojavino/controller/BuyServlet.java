@@ -33,7 +33,7 @@ import java.nio.file.Paths;
 @WebServlet(name = "BuyServlet", urlPatterns = "/buyService", asyncSupported = true)
 public class BuyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	WineRepository wr = new WineRepository();
+	WineRepository wr = new WineRepository(System.getProperty("catalina.home") + "\\data\\store.csv");
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
@@ -43,9 +43,7 @@ public class BuyServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		} catch (CsvDataTypeMismatchException | CsvRequiredFieldEmptyException e) {
 			System.out.println("In csv catch");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/pages/failure.html");
-			response.setStatus(500);
-			dispatcher.forward(request, response);
+			failureAction(request, response);
 		} catch (WineNotFoundException e) {
 			System.out.println("In WNF catch");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/pages/failure.html");
@@ -53,10 +51,14 @@ public class BuyServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			System.out.println("In other catch");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/pages/failure.html");
-			response.setStatus(500);
-			dispatcher.forward(request, response);
+			failureAction(request, response);
 		}
+	}
+
+	private void failureAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/pages/failure.html");
+		response.setStatus(500);
+		dispatcher.forward(request, response);
 	}
 
 	// writing wines to scv file as an order
@@ -64,7 +66,7 @@ public class BuyServlet extends HttpServlet {
 		System.out.println("In checkout method");
 		
 		Writer writer = Files.newBufferedWriter(Paths
-				.get("C:\\Users\\Alexander\\eclipse-workspace\\riojavino\\src\\main\\webapp\\WEB-INF\\data\\order-" + System.currentTimeMillis() + ".csv"));
+				.get(System.getProperty("catalina.home") + "\\data\\order-" + System.currentTimeMillis() + ".csv"));
 		System.out.println("Writer started");
 		StatefulBeanToCsv<Wine> beanToCsv = new StatefulBeanToCsvBuilder<Wine>(writer).withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
 				.build();
