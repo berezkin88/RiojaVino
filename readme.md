@@ -1,6 +1,6 @@
 "Riojavino" is a test project.
 
-It's simulating a wine e-shop.
+It's simulating a wine e-shop. CSV file with wines is simulating wine database.
 
 Environment requirements: Tomcat as a servlet container, Maven as an assembling tool.
 
