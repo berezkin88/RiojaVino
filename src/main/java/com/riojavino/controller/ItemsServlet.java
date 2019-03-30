@@ -20,8 +20,7 @@ import com.riojavino.wineRepository.WineRepository;
 
 @WebServlet(name = "ItemsServlet", urlPatterns = "/shop/items")
 public class ItemsServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	protected List<Wine> items = WineRepository.getStore();
+	private List<Wine> items = WineRepository.getStore();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("wines", items);

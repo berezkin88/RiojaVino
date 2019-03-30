@@ -10,7 +10,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/./riojavino/js/effects.js"></script>
-<script defer src="/./riojavino/js/button.js"></script>
+<script defer src="/./riojavino/js/buy.js"></script>
 <title>Rioja Vino Basket</title>
 </head>
 <body>
@@ -22,7 +22,7 @@
 	</div>
 
 	<div id="wines">
-		<form method="post" action="/./riojavino/buyService" id="post_form">
+		<form method="post" action="/./riojavino/buyService?items=" id="post_form">
 			<c:forEach items="${selected}" var="wine">
 				<div class="wine_slot" style=<c:if test="${wine.value == false}"><c:out value="background-color:darkred;"/> </c:if>>
 					<div class="description" >

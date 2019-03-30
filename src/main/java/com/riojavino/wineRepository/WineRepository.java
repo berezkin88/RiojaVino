@@ -1,6 +1,5 @@
 package com.riojavino.wineRepository;
 
-import java.io.File;
 import java.io.FileReader;
 import java.util.LinkedList;
 import java.util.List; 
@@ -18,21 +17,18 @@ import com.riojavino.entity.Wine;
 public class WineRepository {
 	
 	private static List<Wine> store;
-	private CSVReader reader;
-	private String file;
+	private static String file;
 	
 	public WineRepository(String file) {
-		this.file = file;
+		WineRepository.file = file;
 	}
 
 	//read from csv
-	public List<String[]> read() throws Exception {
-//		File file =
-//				new File("C:\\Users\\Alexander\\eclipse-workspace\\riojavino\\src\\main\\webapp\\WEB-INF\\data\\store.csv");
+	public static List<String[]> read() {
 		System.out.println("Start reading");
 		
 		try {
-			reader = new CSVReader(new FileReader(file));
+			CSVReader reader = new CSVReader(new FileReader(file));
 			LinkedList<String[]> list = (LinkedList<String[]>) reader.readAll();
 			
 			System.out.println("Reading complete");
@@ -51,11 +47,11 @@ public class WineRepository {
 	}
 	
 	//update store
-	public void update() throws Exception{			
+	public static void update() throws Exception{
 		store = convertToWines(read());
 	}
 	
-	public LinkedList<Wine> convertToWines(List<String[]> list) {
+	public static LinkedList<Wine> convertToWines(List<String[]> list) {
 		LinkedList<Wine> wines = new LinkedList<>();
 		
 		if (list.isEmpty()) 
@@ -70,11 +66,8 @@ public class WineRepository {
 	
 	public static boolean checkSKU(int sku) {
 
-		if (store.stream().anyMatch(e -> e.getSku() == sku)) {
-			return true;
-		}
+		return store.stream().anyMatch(e -> e.getSku() == sku);
 
-		return false;
 	}
 	
 	public static Wine findBySKU(int sku) throws Exception{

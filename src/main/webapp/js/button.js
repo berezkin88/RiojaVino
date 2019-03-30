@@ -12,7 +12,7 @@
                 $('#basket').prop('disabled', true);
             }
         })
-    }, 2000
+    }, 2500
     );
 
 
@@ -56,10 +56,5 @@
     // referring to the basket
     let refer = () => {
         return location.href = url;
-    }
-
-    // process checkout
-    let buy = () => {
-        $("#post_form").submit();
     }
 // })

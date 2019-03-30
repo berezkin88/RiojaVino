@@ -23,10 +23,10 @@ import com.riojavino.wineRepository.WineRepository;
 public class HomeServlet extends HttpServlet {
 	private WineRepository wr;
 
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		wr = new WineRepository(System.getProperty("catalina.home") + "\\data\\store.csv");
+		wr = new WineRepository(System.getProperty("catalina.home") + File.separator + "data"
+				+ File.separator + "store.csv");
 		initAndUpdate();
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/pages/home.html");
@@ -45,7 +45,7 @@ public class HomeServlet extends HttpServlet {
 					Thread.sleep(5*60*1000);
 					
 					while(true) {
-						wr.update();
+						WineRepository.update();
 						System.out.println("Store updated");
 						Thread.sleep(5*60*1000);
 					}

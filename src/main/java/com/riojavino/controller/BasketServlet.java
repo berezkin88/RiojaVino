@@ -23,40 +23,47 @@ import com.riojavino.wineRepository.WineRepository;
 
 @WebServlet(name = "BasketServlet", urlPatterns = "/shop/basket")
 public class BasketServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private WineService selected;
+	private WineService clone = new WineService();
+//	private WineService selected;
+	private String[] skus;
 	private Map<Wine, Boolean> results;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		selected = new WineService();
+		// create clone of existing wine db before update
+		clone.setBasket(WineRepository.getStore());
 		results = new HashMap<>();
-		String[] skus = request.getParameter("items").split(",");
-		
-		createOrder(skus);
-		checkWithStore();
-		
+		skus = request.getParameter("items").split(",");
+
+		try {
+			checkWithStore();
+		} catch (Exception e) {
+			// ignore
+		}
+//		createOrder(skus);
+
 		request.setAttribute("selected", results);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/pages/basket.jsp");
 		dispatcher.forward(request, response);
 	}
 	
-	public void createOrder(String[] skus) {
-		if (!(skus == null) || (skus.length > 0)) {
-			for (int i = 0; i < skus.length; i++) {
-				System.out.println(skus[i] + "found");
-				try {
-					selected.add(Integer.parseInt(skus[i]));
-				} catch (Exception e) {
-					continue;
-				}
-			}
-		}
-	}
+//	public void createOrder(String[] skus) {
+//		if (!(skus == null) || (skus.length > 0)) {
+//			for (int i = 0; i < skus.length; i++) {
+//				System.out.println(skus[i] + " found");
+//				try {
+//					selected.add(Integer.parseInt(skus[i]));
+//				} catch (Exception e) {
+//				}
+//			}
+//		}
+//	}
 	
-	public void checkWithStore() {
-		for (Wine item : selected.getBasket()) {
-			results.put(item, WineRepository.checkSKU(item.getSku()));
+	public void checkWithStore() throws Exception {
+		WineRepository.update();
+
+		for (String item : skus) {
+			results.put(clone.findBySKU(Integer.parseInt(item)), WineRepository.checkSKU(Integer.parseInt(item)));
 		}
 	}
 }

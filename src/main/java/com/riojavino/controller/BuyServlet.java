@@ -32,10 +32,13 @@ import java.nio.file.Paths;
 
 @WebServlet(name = "BuyServlet", urlPatterns = "/buyService", asyncSupported = true)
 public class BuyServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	WineRepository wr = new WineRepository(System.getProperty("catalina.home") + "\\data\\store.csv");
-       
+	private WineService order;
+	private String[] skus;
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		order = new WineService();
+		skus = request.getParameter("items").split(",");
+
 		try {
 			checkout();
 			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/pages/success.html");
@@ -66,7 +69,7 @@ public class BuyServlet extends HttpServlet {
 		System.out.println("In checkout method");
 		
 		Writer writer = Files.newBufferedWriter(Paths
-				.get(System.getProperty("catalina.home") + "\\data\\order-" + System.currentTimeMillis() + ".csv"));
+				.get(System.getProperty("catalina.home") + File.separator + "data" + File.separator + "order-" + System.currentTimeMillis() + ".csv"));
 		System.out.println("Writer started");
 		StatefulBeanToCsv<Wine> beanToCsv = new StatefulBeanToCsvBuilder<Wine>(writer).withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
 				.build();
@@ -75,22 +78,25 @@ public class BuyServlet extends HttpServlet {
 		
 		validateWines();
 		
-		beanToCsv.write(WineService.getBasket());
+		beanToCsv.write(order.getBasket());
 		System.out.println("CSV completed");
 		
 		writer.close();
 	}
 	
 	public void validateWines() throws Exception {
-		wr.update();
-		
-		for (Wine wine: WineService.getBasket()) {
-			if(!WineRepository.checkSKU(wine.getSku())) {
-				WineService.getBasket().remove(wine);
+		WineRepository.update();
+
+		if (!(skus == null) || (skus.length > 0)) {
+			for (String item : skus) {
+				if (WineRepository.checkSKU(Integer.parseInt(item))) {
+					// adding wine to order
+					order.getBasket().add(WineRepository.findBySKU(Integer.parseInt(item)));
+				}
 			}
 		}
 		
-		if(WineService.getBasket().isEmpty()) {
+		if(order.getBasket().isEmpty()) {
 			throw new WineNotFoundException("The Wine is out of stock");
 		}
 	}

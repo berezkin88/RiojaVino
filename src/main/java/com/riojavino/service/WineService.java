@@ -15,7 +15,7 @@ import com.riojavino.wineRepository.WineRepository;
 
 public class WineService {
 	
-	private static List<Wine> basket;	
+	private List<Wine> basket;
 	
 	public WineService() {
 		basket = new LinkedList<>();
@@ -30,7 +30,18 @@ public class WineService {
 		}
 	}
 
-	public static List<Wine> getBasket() {
+	public  Wine findBySKU(int sku) throws Exception{
+
+		for (Wine item : basket) {
+			if(item.getSku() == sku)
+				return item;
+		}
+
+		throw new Exception();
+	}
+
+
+	public List<Wine> getBasket() {
 		return basket;
 	}
 
